@@ -1,6 +1,6 @@
 /*!
-    \file  systick.c
-    \brief the systick configuration file
+    \file  readme.txt
+    \brief description of the TLI without GUI example
 
     \version 2015-07-15, V1.0.0, demo for GD32F20x
     \version 2017-06-05, V2.0.0, demo for GD32F20x
@@ -35,52 +35,12 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 OF SUCH DAMAGE.
 */
 
-#include "gd32f20x.h"
-#include "systick.h"
+  This demo is based on the GD32207C-EVAL-V1.2 board,this example shows how to display 
+on LCD an animated picture saved at FLASH.
+  The animated picture is the display of a sequence of images with a determined 
+frequency to be seen like one animated image.
+  After LCD initialization, LCD layer 0 and  LCD layer 1 configuration, an image 
+is displayed by layer 0 on LCD as background, an animated picture by layer 1 on LCD 
+as foreground.
 
-volatile static uint32_t delay;
-
-/*!
-    \brief      configure systick
-    \param[in]  none
-    \param[out] none
-    \retval     none
-*/
-void systick_config(void)
-{
-    /* setup systick timer for 1000Hz interrupts */
-    if (SysTick_Config(SystemCoreClock / 1000U)){
-        /* capture error */
-        while (1){
-        }
-    }
-    /* configure the systick handler priority */
-    NVIC_SetPriority(SysTick_IRQn, 0x00U);
-}
-
-/*!
-    \brief      delay a time in milliseconds
-    \param[in]  count: count in milliseconds
-    \param[out] none
-    \retval     none
-*/
-void delay_1ms(uint32_t count)
-{
-    delay = count;
-
-    while(0U != delay){
-    }
-}
-
-/*!
-    \brief      delay decrement
-    \param[in]  none
-    \param[out] none
-    \retval     none
-*/
-void delay_decrement(void)
-{
-    if (0U != delay){
-        delay--;
-    }
-}
+  Jump JP12,JP13,JP18,JP19,JP24,JP25,JP26,JP27 to LCD

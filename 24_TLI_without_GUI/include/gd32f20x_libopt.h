@@ -1,6 +1,6 @@
 /*!
-    \file  systick.c
-    \brief the systick configuration file
+    \file  gd32f20x_libopt.h
+    \brief library optional for gd32f20x
 
     \version 2015-07-15, V1.0.0, demo for GD32F20x
     \version 2017-06-05, V2.0.0, demo for GD32F20x
@@ -35,52 +35,36 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 OF SUCH DAMAGE.
 */
 
-#include "gd32f20x.h"
-#include "systick.h"
+#ifndef GD32F20X_LIBOPT_H
+#define GD32F20X_LIBOPT_H
 
-volatile static uint32_t delay;
+#include "gd32f20x_adc.h"
+#include "gd32f20x_bkp.h"
+#include "gd32f20x_can.h"
+#include "gd32f20x_crc.h"
+#include "gd32f20x_cau.h"
+#include "gd32f20x_dac.h"
+#include "gd32f20x_dci.h"
+#include "gd32f20x_dma.h"
+#include "gd32f20x_enet.h"
+#include "gd32f20x_exmc.h"
+#include "gd32f20x_exti.h"
+#include "gd32f20x_fmc.h"
+#include "gd32f20x_gpio.h"
+#include "gd32f20x_hau.h"
+#include "gd32f20x_i2c.h"
+#include "gd32f20x_fwdgt.h"
+#include "gd32f20x_dbg.h"
+#include "gd32f20x_misc.h"
+#include "gd32f20x_pmu.h"
+#include "gd32f20x_rcu.h"
+#include "gd32f20x_trng.h"
+#include "gd32f20x_rtc.h"
+#include "gd32f20x_sdio.h"
+#include "gd32f20x_spi.h"
+#include "gd32f20x_timer.h"
+#include "gd32f20x_tli.h"
+#include "gd32f20x_usart.h"
+#include "gd32f20x_wwdgt.h"
 
-/*!
-    \brief      configure systick
-    \param[in]  none
-    \param[out] none
-    \retval     none
-*/
-void systick_config(void)
-{
-    /* setup systick timer for 1000Hz interrupts */
-    if (SysTick_Config(SystemCoreClock / 1000U)){
-        /* capture error */
-        while (1){
-        }
-    }
-    /* configure the systick handler priority */
-    NVIC_SetPriority(SysTick_IRQn, 0x00U);
-}
-
-/*!
-    \brief      delay a time in milliseconds
-    \param[in]  count: count in milliseconds
-    \param[out] none
-    \retval     none
-*/
-void delay_1ms(uint32_t count)
-{
-    delay = count;
-
-    while(0U != delay){
-    }
-}
-
-/*!
-    \brief      delay decrement
-    \param[in]  none
-    \param[out] none
-    \retval     none
-*/
-void delay_decrement(void)
-{
-    if (0U != delay){
-        delay--;
-    }
-}
+#endif /* GD32F20X_LIBOPT_H */

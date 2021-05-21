@@ -1,6 +1,6 @@
 /*!
-    \file  systick.c
-    \brief the systick configuration file
+    \file  gd32f20x_it.c
+    \brief interrupt service routines
 
     \version 2015-07-15, V1.0.0, demo for GD32F20x
     \version 2017-06-05, V2.0.0, demo for GD32F20x
@@ -35,52 +35,108 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 OF SUCH DAMAGE.
 */
 
-#include "gd32f20x.h"
+#include "gd32f20x_it.h"
 #include "systick.h"
 
-volatile static uint32_t delay;
-
 /*!
-    \brief      configure systick
+    \brief      this function handles NMI exception
     \param[in]  none
     \param[out] none
     \retval     none
 */
-void systick_config(void)
+void NMI_Handler(void)
 {
-    /* setup systick timer for 1000Hz interrupts */
-    if (SysTick_Config(SystemCoreClock / 1000U)){
-        /* capture error */
-        while (1){
-        }
-    }
-    /* configure the systick handler priority */
-    NVIC_SetPriority(SysTick_IRQn, 0x00U);
 }
 
 /*!
-    \brief      delay a time in milliseconds
-    \param[in]  count: count in milliseconds
-    \param[out] none
-    \retval     none
-*/
-void delay_1ms(uint32_t count)
-{
-    delay = count;
-
-    while(0U != delay){
-    }
-}
-
-/*!
-    \brief      delay decrement
+    \brief      this function handles HardFault exception
     \param[in]  none
     \param[out] none
     \retval     none
 */
-void delay_decrement(void)
+void HardFault_Handler(void)
 {
-    if (0U != delay){
-        delay--;
+    /* if Hard Fault exception occurs, go to infinite loop */
+    while(1){
     }
+}
+
+/*!
+    \brief      this function handles MemManage exception
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void MemManage_Handler(void)
+{
+    /* if Memory Manage exception occurs, go to infinite loop */
+    while(1){
+    }
+}
+
+/*!
+    \brief      this function handles BusFault exception
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void BusFault_Handler(void)
+{
+    /* if Bus Fault exception occurs, go to infinite loop */
+    while(1){
+    }
+}
+
+/*!
+    \brief      this function handles UsageFault exception
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void UsageFault_Handler(void)
+{
+    /* if Usage Fault exception occurs, go to infinite loop */
+    while(1){
+    }
+}
+
+/*!
+    \brief      this function handles SVC exception
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void SVC_Handler(void)
+{
+}
+
+/*!
+    \brief      this function handles DebugMon exception
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void DebugMon_Handler(void)
+{
+}
+
+/*!
+    \brief      this function handles PendSV exception
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void PendSV_Handler(void)
+{
+}
+
+/*!
+    \brief      this function handles SysTick exception
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void SysTick_Handler(void)
+{
+    delay_decrement();
 }

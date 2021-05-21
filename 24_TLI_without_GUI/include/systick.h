@@ -1,6 +1,6 @@
 /*!
-    \file  systick.c
-    \brief the systick configuration file
+    \file  systick.h
+    \brief the header file of systick
 
     \version 2015-07-15, V1.0.0, demo for GD32F20x
     \version 2017-06-05, V2.0.0, demo for GD32F20x
@@ -35,52 +35,16 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 OF SUCH DAMAGE.
 */
 
-#include "gd32f20x.h"
-#include "systick.h"
+#ifndef SYS_TICK_H
+#define SYS_TICK_H
 
-volatile static uint32_t delay;
+#include <stdint.h>
 
-/*!
-    \brief      configure systick
-    \param[in]  none
-    \param[out] none
-    \retval     none
-*/
-void systick_config(void)
-{
-    /* setup systick timer for 1000Hz interrupts */
-    if (SysTick_Config(SystemCoreClock / 1000U)){
-        /* capture error */
-        while (1){
-        }
-    }
-    /* configure the systick handler priority */
-    NVIC_SetPriority(SysTick_IRQn, 0x00U);
-}
+/* configure systick */
+void systick_config(void);
+/* delay a time in milliseconds */
+void delay_1ms(uint32_t count);
+/* delay decrement */
+void delay_decrement(void);
 
-/*!
-    \brief      delay a time in milliseconds
-    \param[in]  count: count in milliseconds
-    \param[out] none
-    \retval     none
-*/
-void delay_1ms(uint32_t count)
-{
-    delay = count;
-
-    while(0U != delay){
-    }
-}
-
-/*!
-    \brief      delay decrement
-    \param[in]  none
-    \param[out] none
-    \retval     none
-*/
-void delay_decrement(void)
-{
-    if (0U != delay){
-        delay--;
-    }
-}
+#endif /* SYS_TICK_H */

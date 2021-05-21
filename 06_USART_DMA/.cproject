@@ -22,9 +22,19 @@
 							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="cdt.managedbuild.targetPlatform.gnu.cross.1495254090" isAbstract="false" osList="all" superClass="cdt.managedbuild.targetPlatform.gnu.cross"/>
 							<builder id="cdt.managedbuild.builder.gnu.cross.830076189" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="cdt.managedbuild.builder.gnu.cross"/>
 							<tool id="cdt.managedbuild.tool.gnu.cross.c.compiler.1907188237" name="Cross GCC Compiler" superClass="cdt.managedbuild.tool.gnu.cross.c.compiler">
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.c.compiler.option.include.paths.873198287" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-gd32f2xx/GD32F20x_standard_peripheral/Include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-gd32f2xx/CMSIS/GD/GD32F20x/Include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-GD32F207C_EVAL/include}&quot;"/>
+								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.387438783" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.853655438" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler">
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.cpp.compiler.option.include.paths.1474967603" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-gd32f2xx/GD32F20x_standard_peripheral/Include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-gd32f2xx/CMSIS/GD/GD32F20x/Include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-GD32F207C_EVAL/include}&quot;"/>
+								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.128591283" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.cross.c.linker.827385327" name="Cross GCC Linker" superClass="cdt.managedbuild.tool.gnu.cross.c.linker"/>
@@ -36,6 +46,11 @@
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.cross.archiver.2000013950" name="Cross GCC Archiver" superClass="cdt.managedbuild.tool.gnu.cross.archiver"/>
 							<tool id="cdt.managedbuild.tool.gnu.cross.assembler.1149269536" name="Cross GCC Assembler" superClass="cdt.managedbuild.tool.gnu.cross.assembler">
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.both.asm.option.include.paths.1276076900" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-gd32f2xx/GD32F20x_standard_peripheral/Include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-gd32f2xx/CMSIS/GD/GD32F20x/Include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib-GD32F207C_EVAL/include}&quot;"/>
+								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.634157487" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
 						</toolChain>
@@ -52,10 +67,16 @@
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
 		<project id="06_USART_DMA.null.573169467" name="06_USART_DMA"/>
 	</storageModule>
-	<storageModule moduleId="scannerConfiguration">
-		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 	<storageModule moduleId="refreshScope"/>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.cross.base.1288803459;cdt.managedbuild.toolchain.gnu.cross.base.1288803459.311987262;cdt.managedbuild.tool.gnu.cross.c.compiler.1907188237;cdt.managedbuild.tool.gnu.c.compiler.input.387438783">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.cross.base.1288803459;cdt.managedbuild.toolchain.gnu.cross.base.1288803459.311987262;cdt.managedbuild.tool.gnu.cross.cpp.compiler.853655438;cdt.managedbuild.tool.gnu.cpp.compiler.input.128591283">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+	</storageModule>
 </cproject>

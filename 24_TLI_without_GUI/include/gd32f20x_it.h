@@ -1,6 +1,6 @@
 /*!
-    \file  systick.c
-    \brief the systick configuration file
+    \file  gd32f20x_it.h
+    \brief the header file of the ISR
 
     \version 2015-07-15, V1.0.0, demo for GD32F20x
     \version 2017-06-05, V2.0.0, demo for GD32F20x
@@ -35,52 +35,29 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 OF SUCH DAMAGE.
 */
 
+#ifndef GD32F20X_IT_H
+#define GD32F20X_IT_H
+
 #include "gd32f20x.h"
-#include "systick.h"
 
-volatile static uint32_t delay;
+/* function declarations */
+/* this function handles NMI exception */
+void NMI_Handler(void);
+/* this function handles HardFault exception */
+void HardFault_Handler(void);
+/* this function handles MemManage exception */
+void MemManage_Handler(void);
+/* this function handles BusFault exception */
+void BusFault_Handler(void);
+/* this function handles UsageFault exception */
+void UsageFault_Handler(void);
+/* this function handles SVC exception */
+void SVC_Handler(void);
+/* this function handles DebugMon exception */
+void DebugMon_Handler(void);
+/* this function handles PendSV exception */
+void PendSV_Handler(void);
+/* this function handles SysTick exception */
+void SysTick_Handler(void);
 
-/*!
-    \brief      configure systick
-    \param[in]  none
-    \param[out] none
-    \retval     none
-*/
-void systick_config(void)
-{
-    /* setup systick timer for 1000Hz interrupts */
-    if (SysTick_Config(SystemCoreClock / 1000U)){
-        /* capture error */
-        while (1){
-        }
-    }
-    /* configure the systick handler priority */
-    NVIC_SetPriority(SysTick_IRQn, 0x00U);
-}
-
-/*!
-    \brief      delay a time in milliseconds
-    \param[in]  count: count in milliseconds
-    \param[out] none
-    \retval     none
-*/
-void delay_1ms(uint32_t count)
-{
-    delay = count;
-
-    while(0U != delay){
-    }
-}
-
-/*!
-    \brief      delay decrement
-    \param[in]  none
-    \param[out] none
-    \retval     none
-*/
-void delay_decrement(void)
-{
-    if (0U != delay){
-        delay--;
-    }
-}
+#endif /* GD32F20X_IT_H */

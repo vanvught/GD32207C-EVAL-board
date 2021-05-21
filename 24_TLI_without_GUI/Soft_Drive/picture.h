@@ -1,15 +1,16 @@
 /*!
-    \file  systick.c
-    \brief the systick configuration file
+    \file  picture.h
+    \brief picture header file
 
     \version 2015-07-15, V1.0.0, demo for GD32F20x
     \version 2017-06-05, V2.0.0, demo for GD32F20x
     \version 2018-10-31, V2.1.0, demo for GD32F20x
-    \version 2020-09-30, V2.2.0, demo for GD32F20x
 */
 
 /*
-    Copyright (c) 2020, GigaDevice Semiconductor Inc.
+    Copyright (c) 2018, GigaDevice Semiconductor Inc.
+
+    All rights reserved.
 
     Redistribution and use in source and binary forms, with or without modification, 
 are permitted provided that the following conditions are met:
@@ -35,52 +36,18 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 OF SUCH DAMAGE.
 */
 
+#ifndef PICTURE_H
+#define PICTURE_H
+
 #include "gd32f20x.h"
-#include "systick.h"
 
-volatile static uint32_t delay;
-
-/*!
-    \brief      configure systick
-    \param[in]  none
-    \param[out] none
-    \retval     none
-*/
-void systick_config(void)
-{
-    /* setup systick timer for 1000Hz interrupts */
-    if (SysTick_Config(SystemCoreClock / 1000U)){
-        /* capture error */
-        while (1){
-        }
-    }
-    /* configure the systick handler priority */
-    NVIC_SetPriority(SysTick_IRQn, 0x00U);
-}
-
-/*!
-    \brief      delay a time in milliseconds
-    \param[in]  count: count in milliseconds
-    \param[out] none
-    \retval     none
-*/
-void delay_1ms(uint32_t count)
-{
-    delay = count;
-
-    while(0U != delay){
-    }
-}
-
-/*!
-    \brief      delay decrement
-    \param[in]  none
-    \param[out] none
-    \retval     none
-*/
-void delay_decrement(void)
-{
-    if (0U != delay){
-        delay--;
-    }
-}
+extern const uint8_t image_0[];
+extern const uint8_t image_1[];
+extern const uint8_t image_2[];
+extern const uint8_t image_3[];
+extern const uint8_t image_4[];
+extern const uint8_t image_5[];
+extern const uint8_t image_6[];
+extern const uint8_t image_7[];
+extern const uint8_t image_background[];
+#endif /* PICTURE_H */
