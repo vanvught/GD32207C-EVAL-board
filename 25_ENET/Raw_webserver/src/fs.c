@@ -44,7 +44,7 @@
 #if HTTPD_USE_CUSTOM_FSDATA
 #include "fsdata_custom.c"
 #else /* HTTPD_USE_CUSTOM_FSDATA */
-#include "fsdata.c"
+#include "data/fsdata.c"
 #endif /* HTTPD_USE_CUSTOM_FSDATA */
 
 /*-----------------------------------------------------------------------------------*/

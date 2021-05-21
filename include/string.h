@@ -87,7 +87,7 @@ inline static void *memmove(/*@only@*/void *dst, const void *src, size_t n) {
 	return dst;
 }
 
-inline static void *memset(/*@only@*/void *dest, int c, size_t n) {
+inline static void *memset(void *dest, int c, size_t n) {
 	char *dp = (char *) dest;
 
 	while (n-- != (size_t) 0) {
@@ -190,6 +190,49 @@ inline static int strncasecmp(const char *s1, const char *s2, size_t n) {
 inline static char *strcat(char *s1, const char *s2) {
 	strcpy(s1 + strlen(s1), s2);
 	return s1;
+}
+
+inline static char* strchr(const char *s, int ch) {
+	char c;
+
+	c = ch;
+	for (;; ++s) {
+		if (*s == c)
+			return ((char*) s);
+		if (*s == '\0')
+			return (NULL);
+	}
+	/* NOTREACHED */
+}
+
+inline static char* strstr(const char *string, const char *substring) {
+	char *a, *b;
+
+	/* First scan quickly through the two strings looking for a
+	 * single-character match.  When it's found, then compare the
+	 * rest of the substring.
+	 */
+
+	b = (char*)substring;
+	if (*b == 0) {
+		return (char*)string;
+	}
+	for (; *string != 0; string += 1) {
+		if (*string != *b) {
+			continue;
+		}
+		a = (char*)string;
+		while (1) {
+			if (*b == 0) {
+				return (char*)string;
+			}
+			if (*a++ != *b++) {
+				break;
+			}
+		}
+		b = (char*)substring;
+	}
+	return NULL;
 }
 
 #ifdef __cplusplus
