@@ -28,9 +28,12 @@
 *.a
 
 # Build output
+lib_gd32
+build_gd32
 *.list
 *.elf
 *.map
 
 # MacOS
 .DS_Store
+
