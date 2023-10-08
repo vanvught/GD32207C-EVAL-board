@@ -32,7 +32,13 @@ C_OBJECTS=$(foreach sdir,$(SRCDIR),$(patsubst $(sdir)/%.c,$(BUILD)$(sdir)/%.o,$(
 CPP_OBJECTS=$(foreach sdir,$(SRCDIR),$(patsubst $(sdir)/%.cpp,$(BUILD)$(sdir)/%.o,$(wildcard $(sdir)/*.cpp)))
 ASM_OBJECTS=$(foreach sdir,$(SRCDIR),$(patsubst $(sdir)/%.S,$(BUILD)$(sdir)/%.o,$(wildcard $(sdir)/*.S)))
 
-OBJECTS:=$(ASM_OBJECTS) $(C_OBJECTS) $(CPP_OBJECTS)
+EXTRA_C_OBJECTS=$(patsubst %.c,$(BUILD)%.o,$(EXTRA_C_SOURCE_FILES))
+EXTRA_C_DIRECTORIES=$(shell dirname $(EXTRA_C_SOURCE_FILES))
+EXTRA_BUILD_DIRS:=$(addsuffix $(EXTRA_C_DIRECTORIES), $(BUILD))
+
+OBJECTS:=$(strip $(ASM_OBJECTS) $(C_OBJECTS) $(CPP_OBJECTS) $(EXTRA_C_OBJECTS))
+
+$(info $$OBJECTS [${OBJECTS}])
 
 TARGET=lib_gd32/lib$(LIB_NAME).a 
 $(info $$TARGET [${TARGET}])
@@ -56,11 +62,15 @@ all : builddirs $(TARGET)
 
 builddirs:
 	mkdir -p $(BUILD_DIRS)
+	mkdir -p $(EXTRA_BUILD_DIRS)
 	mkdir -p lib_gd32
 
 clean:
 	rm -rf build_gd32
 	rm -rf lib_gd32
+	
+$(BUILD)%.o: %.c
+	$(CC) $(COPS) -c $< -o $@
 	
 $(BUILD_DIRS) :	
 	mkdir -p $(BUILD_DIRS)
